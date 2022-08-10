@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postSignUp } from "../../services/drivenPuls";
+import { postSignUp } from "../../services/drivenPlus";
 import { ThreeDots } from "react-loader-spinner";
 
 export default function SignUp() {
   const [name, setName] = useState("");
-  const [CPF, setCPF] = useState("");
+  const [cpf, setCpf] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -15,16 +15,18 @@ export default function SignUp() {
   function handleForm(event) {
     event.preventDefault();
     const body = {
-      name,
-      CPF,
       email,
+      name,
+      cpf,
       password,
     };
 
     postSignUp(body)
       .then((response) => {
         setLoading(true);
-        navigate("/");
+        // navigate("/");
+        console.log(response.data)
+        alert("cadastro realizado")
       })
       .catch((err) => {
         setLoading(false);
@@ -47,13 +49,13 @@ export default function SignUp() {
           ></input>
 
           <input
-            name="CPF"
+            name="cpf"
             placeholder="CPF"
             type="text"
             pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-            value={CPF}
+            value={cpf}
             disabled={loading ? true : false}
-            onChange={(e) => setCPF(e.target.value)}
+            onChange={(e) => setCpf(e.target.value)}
             required
           ></input>
 
