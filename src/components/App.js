@@ -16,8 +16,8 @@ export default function App() {
       <BrowserRouter>
         <UserContext.Provider value={{}}>
           <Routes>
-            {/* <Route path="/" element={<Login />} /> */}
-            <Route path="/" element={<SignUp />} />
+            <Route path="/" element={<Login />} /> 
+            <Route path="/sign-up" element={<SignUp />} />
             <Route path="/subscritions" element={<PrivatePage><Subscritions /></PrivatePage>} />
             <Route path="/home" element={<PrivatePage><Home /></PrivatePage>} />
           </Routes>

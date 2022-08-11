@@ -24,9 +24,8 @@ export default function SignUp() {
     postSignUp(body)
       .then((response) => {
         setLoading(true);
-        // navigate("/");
-        console.log(response.data)
-        alert("cadastro realizado")
+        navigate("/");
+        alert("Cadastro realizado");
       })
       .catch((err) => {
         setLoading(false);
@@ -88,7 +87,7 @@ export default function SignUp() {
               "Cadastrar"
             )}
           </button>
-          <span onClick={() => navigate("/")}>Já possuí uma conta? Entre</span>
+          <span onClick={() => navigate("/")}>Já possui uma conta? Entre</span>
         </form>
       </div>
     </Content>
@@ -112,7 +111,6 @@ const Content = styled.div`
     form {
       position: relative;
       top:30vw;
-
       display: flex;
       flex-direction: column;
       height: 100%;
