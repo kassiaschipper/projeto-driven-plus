@@ -22,7 +22,7 @@ export default function Login() {
     postLogin(body)
       .then((response) => {
         const authJSON = JSON.stringify(response.data);
-        localStorage.setItem("drivenplus", authJSON);
+        localStorage.setItem("drivenPlus", authJSON);
         navigate("/subscriptions");
       })
       .catch((err) => {
@@ -44,7 +44,7 @@ export default function Login() {
           placeholder="email"
           type="email"
           value={email}
-          disabled={loading ? true : false}
+          // disabled={loading ? true : false}
           onChange={(e) => setEmail(e.target.value)}
           required
         ></input>
@@ -54,7 +54,7 @@ export default function Login() {
           placeholder="senha"
           type="password"
           value={password}
-          disabled={loading === false ? false : true}
+          // disabled={loading === false ? false : true}
           onChange={(e) => setPassword(e.target.value)}
           required
         ></input>
@@ -153,6 +153,7 @@ const Content = styled.div`
       line-height: 17px;
       text-align: center;
       text-decoration-line: underline;
+      color: #d5d5d5;
 
     }
 

@@ -169,7 +169,7 @@ const Content = styled.div`
       text-align: center;
       text-decoration-line: underline;
 
-      color: #52b6ff;
+      color: white;
     }
   }
 `;
