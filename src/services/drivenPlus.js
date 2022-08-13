@@ -18,7 +18,7 @@ function getListPlans() {
   return promise;
 }
 
-function getListPlan(planId) {
+function getPlan(planId) {
   const config = createHeaders();
   const promise = axios.get(
     `${BASE_URL}/subscriptions/memberships/${planId}`,
@@ -54,7 +54,7 @@ export {
   postSignUp,
   postLogin,
   getListPlans,
-  getListPlan,
+  getPlan,
   postSubscriptions,
   deletePlan,
   createHeaders,

@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { getListPlans } from "../../services/drivenPlus";
+
+
 
 export default function Plans() {
   const [plans, setPlans] = useState([]);
   const navigate = useNavigate();
-
+  
+  
   useEffect(() => {
     listPlans();
   }, []);
@@ -15,22 +18,21 @@ export default function Plans() {
     getListPlans()
       .then((response) => {
         setPlans(response.data);
-        console.log(plans);
-      })
+     })
       .catch((err) => {
         alert("Erro ao listar planos");
         navigate("/");
       });
   }
 
-  return (
+   return (
     <>
       {" "}
       <PlansWrapper>
         {plans.map((value) => (
-          <PlanWrapper onClick={()=> alert("teste")}>
+          <PlanWrapper key={value.id} onClick={()=> navigate(`/subscriptions/${value.id}`)}>
             <img src={value.image} />
-            <div>{value.price.replace(".", ",")}</div>
+            <div >{value.price.replace(".", ",")}</div>
           </PlanWrapper>
         ))}
        </PlansWrapper>

@@ -15,7 +15,6 @@ const Content = styled.div`
     * {
       box-sizing: border-box;
     }
-
     position: fixed;
     top: 0;
     left: 0;
@@ -23,7 +22,6 @@ const Content = styled.div`
     height: 100%;
 
     background: #0e0e13;
-    /* background: white; */
   }
 `;
 const Title = styled.div`

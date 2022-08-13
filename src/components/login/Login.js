@@ -44,7 +44,7 @@ export default function Login() {
           placeholder="email"
           type="email"
           value={email}
-          // disabled={loading ? true : false}
+          disabled={loading ? true : false}
           onChange={(e) => setEmail(e.target.value)}
           required
         ></input>
@@ -64,8 +64,8 @@ export default function Login() {
             <ThreeDots
               width="100%"
               color="#FFFFFF"
-              height={13}
               aling="center"
+              height={10}
             />
           ) : (
             "Entrar"
@@ -86,7 +86,7 @@ const Content = styled.div`
     }
 
     position: fixed;
-    top: 0;
+    /* top: 0; */
     left: 0;
     width: 100%;
     height: 100%;
@@ -121,17 +121,17 @@ const Content = styled.div`
 
     button {
       display: flex;
-      flex-direction: row;
+      /* flex-direction: row; */
       justify-content: center;
       align-items: center;
-      padding: 18px 122px;
-      gap: 10px;
+      /* padding: 18px 122px; */
+      /* gap: 10px; */
 
       position: relative;
       width: 299px;
       height: 52px;
       left: 0;
-      top: 0;
+      /* top: 0; */
       margin: 10px auto;
 
       background: #ff4791;
@@ -149,7 +149,7 @@ const Content = styled.div`
       font-family: "Lexend Deca";
       font-style: normal;
       font-weight: 400;
-      font-size: 13.976px;
+      font-size: 14px;
       line-height: 17px;
       text-align: center;
       text-decoration-line: underline;
