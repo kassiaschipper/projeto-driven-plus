@@ -50,6 +50,7 @@ const PlansWrapper = styled.div`
   display: flex;
   flex-direction: column;
    margin-top: 25%;
+   overflow-y: scroll;
 `;
 const PlanWrapper = styled.div`
   display: flex;

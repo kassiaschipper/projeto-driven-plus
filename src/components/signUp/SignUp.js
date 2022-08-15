@@ -107,7 +107,7 @@ const Content = styled.div`
     height: 100%;
 
     background: #0e0e13;
-
+    overflow-y: scroll;
     form {
       position: relative;
       top:30vw;

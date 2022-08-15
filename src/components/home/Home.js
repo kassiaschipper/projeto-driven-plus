@@ -61,6 +61,7 @@ const Content = styled.div`
   width: 100%;
   height: 100%;
   background-color: #0e0e13;
+
 `;
 
 const LogoWrapper = styled.div`
@@ -111,6 +112,7 @@ const Button = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
 
   button {
     width: 299px;
