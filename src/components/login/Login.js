@@ -10,9 +10,9 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { purchaseData, setSurchaseData } = useContext(UserContext);
+  const { purchaseData, setPurchaseData } = useContext(UserContext);
+  const { cardName, setCardName } = useContext(UserContext);
   const navigate = useNavigate();
-  // console.log(purchaseData.membership);
 
   function handleForm(e) {
     e.preventDefault();
@@ -26,8 +26,14 @@ export default function Login() {
       .then((response) => {
         const authJSON = JSON.stringify(response.data);
         localStorage.setItem("drivenPlus", authJSON);
-        // {purchaseData.perks === null ? navigate("/subscriptions") : navigate("/home")};
-        navigate("/subscriptions");
+        if (response.data.membership === null) {
+          console.log(response.data.membership);
+          navigate("/subscriptions");
+        } else {
+          setPurchaseData(response.data.membership);
+          setCardName(response.data.name);
+          navigate("/home");
+        }
       })
       .catch((err) => {
         setLoading(false);

@@ -9,6 +9,7 @@ export default function Home() {
   const { purchaseData, setPurchaseData } = useContext(UserContext);
   const { cardName, setCardName } = useContext(UserContext);
   const navigate = useNavigate();
+  console.log(cardName)
   
   function planDelete () {
     deletePlan().then(() => {
@@ -98,7 +99,7 @@ const Title = styled.div`
 const Button = styled.div`
   position: fixed;
   width: 100%;
-  bottom: 60%;
+  bottom: 50%;
   left: 0;
 
   display: flex;

@@ -21,8 +21,7 @@ export default function Plan() {
   const [expirationDate, setExpirationDate] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const { purchaseData, setPurchaseData } = useContext(UserContext);
-  const { subscription, setSubscription } = useContext(UserContext);
-  const navigate = useNavigate();
+   const navigate = useNavigate();
 
   useEffect(() => {
     getPlanById();
@@ -63,7 +62,6 @@ export default function Plan() {
       .then((response) => {
         closeModal();
         setPurchaseData(response.data.membership);
-        setSubscription(true)
         navigate("/home");
       })
       .catch((err) => {
