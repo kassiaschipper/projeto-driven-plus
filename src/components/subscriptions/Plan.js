@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getPlan } from "../../services/drivenPlus";
 import { useParams, useNavigate } from "react-router-dom";
 import Perks from "./Perks";
@@ -8,16 +8,20 @@ import Arrow from "../../assets/images/Arrow.png";
 import PerksList from "../../assets/images/PerksList.png";
 import Price from "../../assets/images/Price.png";
 import Close from "../../assets/images/Close.png";
+import { postSubscription } from "../../services/drivenPlus";
+import UserContext from "../../context/UserContext";
 
 export default function Plan() {
   const { planId } = useParams();
   const [plan, setPlan] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [cardName, setCardName] = useState("");
+  const { cardName, setCardName } = useContext(UserContext);
   const [cardNumber, setCardNumber] = useState("");
   const [securityNumber, setSecurityNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const { purchaseData, setPurchaseData } = useContext(UserContext);
+  const { subscription, setSubscription } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,8 +31,6 @@ export default function Plan() {
   function getPlanById() {
     getPlan(planId)
       .then((response) => {
-        console.log(response.data);
-        console.log(response.data.perks);
         setLoading(false);
         setPlan(response.data);
       })
@@ -47,6 +49,26 @@ export default function Plan() {
   }
   function closeModal() {
     setIsOpen(false);
+  }
+  function handleModal() {
+    const body = {
+      membershipId: planId,
+      cardName,
+      cardNumber,
+      securityNumber,
+      expirationDate,
+    };
+
+    postSubscription(body)
+      .then((response) => {
+        closeModal();
+        setPurchaseData(response.data.membership);
+        setSubscription(true)
+        navigate("/home");
+      })
+      .catch((err) => {
+        alert("Erro ao enviar os dados!");
+      });
   }
 
   return (
@@ -161,7 +183,7 @@ export default function Plan() {
           <Card>
             <p>
               Tem certeza que deseja assinar o plano <br />
-              Driven Plus (R$ {plan.price}) ?
+              Driven Plus (R$ {plan.price.replace(".", ",")}) ?
             </p>
             <ButtonWrapper>
               <NoButton>
@@ -178,15 +200,13 @@ export default function Plan() {
               <YesButton>
                 <button
                   onClick={() => {
-                    closeModal();
+                    handleModal();
                   }}
                 >
                   Sim
                 </button>
               </YesButton>
             </ButtonWrapper>
-
-            {/* {isDisabled ? <button className="confirm"><ThreeDots color="#FFFFFF" height={14} width={95} /></button> : <button onClick={()=>{purchase()}} className="confirm">SIM</button>} */}
           </Card>
         </Modal>
       ) : (
@@ -406,7 +426,6 @@ const Card = styled.div`
   height: 210px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   box-sizing: border-box;
   padding: 0 20px;
@@ -424,8 +443,8 @@ const Card = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
- justify-content: space-around;
- width: 100%;
+  justify-content: space-around;
+  width: 100%;
 `;
 const NoButton = styled.div`
   button {

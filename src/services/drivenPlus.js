@@ -27,9 +27,9 @@ function getPlan(planId) {
   return promise;
 }
 
-function postSubscriptions() {
+function postSubscription(body) {
   const config = createHeaders();
-  const promise = axios.post(`${BASE_URL}/subscriptions`, config);
+  const promise = axios.post(`${BASE_URL}/subscriptions`, body, config);
   return promise;
 }
 
@@ -55,7 +55,7 @@ export {
   postLogin,
   getListPlans,
   getPlan,
-  postSubscriptions,
+  postSubscription,
   deletePlan,
   createHeaders,
 };

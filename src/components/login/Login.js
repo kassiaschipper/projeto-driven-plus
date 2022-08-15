@@ -1,15 +1,18 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { postLogin } from "../../services/drivenPlus";
 import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import Driven from "../../assets/images/Driven.png";
+import UserContext from "../../context/UserContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const { purchaseData, setSurchaseData } = useContext(UserContext);
   const navigate = useNavigate();
+  // console.log(purchaseData.membership);
 
   function handleForm(e) {
     e.preventDefault();
@@ -23,6 +26,7 @@ export default function Login() {
       .then((response) => {
         const authJSON = JSON.stringify(response.data);
         localStorage.setItem("drivenPlus", authJSON);
+        // {purchaseData.perks === null ? navigate("/subscriptions") : navigate("/home")};
         navigate("/subscriptions");
       })
       .catch((err) => {
@@ -54,7 +58,7 @@ export default function Login() {
           placeholder="senha"
           type="password"
           value={password}
-          // disabled={loading === false ? false : true}
+          disabled={loading === false ? false : true}
           onChange={(e) => setPassword(e.target.value)}
           required
         ></input>
@@ -71,6 +75,7 @@ export default function Login() {
             "Entrar"
           )}
         </button>
+
         <span onClick={() => navigate("/sign-up")}>
           Não possui uma conta? Cadastre-se
         </span>
@@ -154,7 +159,6 @@ const Content = styled.div`
       text-align: center;
       text-decoration-line: underline;
       color: #d5d5d5;
-
     }
 
     div {
