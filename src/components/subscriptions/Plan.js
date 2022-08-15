@@ -21,7 +21,7 @@ export default function Plan() {
   const [expirationDate, setExpirationDate] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const { purchaseData, setPurchaseData } = useContext(UserContext);
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPlanById();

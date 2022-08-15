@@ -12,19 +12,47 @@ import UserContext from "../context/UserContext";
 export default function App() {
   const [purchaseData, setPurchaseData] = useState({});
   const [cardName, setCardName] = useState("");
-  
-  
+ 
   return (
     <>
       <GlobalStyle />
       <BrowserRouter>
-        <UserContext.Provider value={{purchaseData, setPurchaseData, cardName, setCardName}}>
+        <UserContext.Provider
+          value={{
+            purchaseData,
+            setPurchaseData,
+            cardName,
+            setCardName            
+          }}
+        >
           <Routes>
-            <Route path="/" element={<Login />} /> 
+            <Route path="/" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/subscriptions" element={<PrivatePage><Subscriptions /></PrivatePage>} />
-            <Route path="/subscriptions/:planId" element={<PrivatePage><Plan /></PrivatePage>} />
-            <Route path="/home" element={<PrivatePage><Home /></PrivatePage>} />
+            <Route
+              path="/subscriptions"
+              element={
+                <PrivatePage>
+                  <Subscriptions />
+                </PrivatePage>
+              }
+            />
+            <Route
+              path="/subscriptions/:planId"
+              element={
+                <PrivatePage>
+                  <Plan />
+                </PrivatePage>
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <PrivatePage>
+                  <Home />
+                </PrivatePage>
+              }
+            />
+            
           </Routes>
         </UserContext.Provider>
       </BrowserRouter>

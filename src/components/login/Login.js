@@ -13,6 +13,7 @@ export default function Login() {
   const { purchaseData, setPurchaseData } = useContext(UserContext);
   const { cardName, setCardName } = useContext(UserContext);
   const navigate = useNavigate();
+  
 
   function handleForm(e) {
     e.preventDefault();
@@ -27,7 +28,7 @@ export default function Login() {
         const authJSON = JSON.stringify(response.data);
         localStorage.setItem("drivenPlus", authJSON);
         if (response.data.membership === null) {
-          console.log(response.data.membership);
+          //console.log(response.data.membership);
           navigate("/subscriptions");
         } else {
           setPurchaseData(response.data.membership);
