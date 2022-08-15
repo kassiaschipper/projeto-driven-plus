@@ -9,13 +9,16 @@ export default function Home() {
   const { purchaseData, setPurchaseData } = useContext(UserContext);
   const { cardName, setCardName } = useContext(UserContext);
   const navigate = useNavigate();
-  console.log(cardName)
+
+  //console.log(cardName);
+  //console.log(purchaseData)
   
-  function planDelete () {
-    deletePlan().then(() => {
-      navigate("/subscriptions");
-    })
-    .catch(() => alert("Erro ao deletar, tente novamente."))
+  function planDelete() {
+    deletePlan()
+      .then(() => {
+        navigate("/subscriptions");
+      })
+      .catch(() => alert("Erro ao deletar, tente novamente."));
   }
   return (
     <Content>
@@ -30,8 +33,11 @@ export default function Home() {
       </Title>
       <Button>
         {purchaseData.perks.map((value) => (
-           <a href={value.link} target="_blank"> <button key={value.id}>{value.title}</button></a>
-                  ))}
+          <a href={value.link} target="_blank">
+            {" "}
+            <button key={value.id}>{value.title}</button>
+          </a>
+        ))}
       </Button>
 
       <Footer>
